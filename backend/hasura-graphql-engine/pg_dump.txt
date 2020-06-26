@@ -9,6 +9,21 @@ BEGIN
   RETURN _new;
 END;
 $$;
+CREATE TABLE public.area_codes (
+    id integer NOT NULL,
+    product_id integer NOT NULL,
+    pin_code integer NOT NULL,
+    name text NOT NULL
+);
+COMMENT ON TABLE public.area_codes IS 'Product can be delivered to which area';
+CREATE SEQUENCE public.area_codes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ALTER SEQUENCE public.area_codes_id_seq OWNED BY public.area_codes.id;
 CREATE TABLE public.orders (
     id integer NOT NULL,
     ordered_date timestamp with time zone DEFAULT now() NOT NULL,
@@ -70,8 +85,9 @@ CREATE TABLE public.products (
     price integer NOT NULL,
     category text NOT NULL,
     title text NOT NULL,
-    product_image_id text,
-    shipping_charge integer
+    product_bucket_id text,
+    shipping_charge integer,
+    base64_image_text text NOT NULL
 );
 COMMENT ON TABLE public.products IS 'Products table';
 CREATE SEQUENCE public.products_id_seq
@@ -104,11 +120,14 @@ CREATE SEQUENCE public.user_id_seq
     NO MAXVALUE
     CACHE 1;
 ALTER SEQUENCE public.user_id_seq OWNED BY public.users.id;
+ALTER TABLE ONLY public.area_codes ALTER COLUMN id SET DEFAULT nextval('public.area_codes_id_seq'::regclass);
 ALTER TABLE ONLY public.order_items ALTER COLUMN id SET DEFAULT nextval('public.order_items_id_seq'::regclass);
 ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.order_id_seq'::regclass);
 ALTER TABLE ONLY public.payments ALTER COLUMN id SET DEFAULT nextval('public.payments_id_seq'::regclass);
 ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.user_id_seq'::regclass);
+ALTER TABLE ONLY public.area_codes
+    ADD CONSTRAINT area_codes_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.order_items
     ADD CONSTRAINT order_items_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.orders
@@ -133,6 +152,8 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT "user_userId_key" UNIQUE (user_id);
 CREATE TRIGGER set_public_user_updated_at BEFORE UPDATE ON public.users FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
 COMMENT ON TRIGGER set_public_user_updated_at ON public.users IS 'trigger to set value of column "updated_at" to current timestamp on row update';
+ALTER TABLE ONLY public.area_codes
+    ADD CONSTRAINT area_codes_product_id_fkey FOREIGN KEY (product_id) REFERENCES public.products(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE ONLY public.order_items
     ADD CONSTRAINT order_items_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE ONLY public.order_items
