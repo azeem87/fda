@@ -1,0 +1,217 @@
+{
+  "version": 2,
+  "tables": [
+    {
+      "table": {
+        "schema": "public",
+        "name": "area_codes"
+      },
+      "object_relationships": [
+        {
+          "name": "product",
+          "using": {
+            "foreign_key_constraint_on": "product_id"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "order_items"
+      },
+      "object_relationships": [
+        {
+          "name": "product",
+          "using": {
+            "foreign_key_constraint_on": "product_id"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "order_items",
+          "using": {
+            "manual_configuration": {
+              "remote_table": {
+                "schema": "public",
+                "name": "orders"
+              },
+              "column_mapping": {
+                "order_id": "id"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "orders"
+      },
+      "object_relationships": [
+        {
+          "name": "payment",
+          "using": {
+            "manual_configuration": {
+              "remote_table": {
+                "schema": "public",
+                "name": "payments"
+              },
+              "column_mapping": {
+                "id": "order_id"
+              }
+            }
+          }
+        },
+        {
+          "name": "user",
+          "using": {
+            "foreign_key_constraint_on": "customer_id"
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "order_items",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "order_id",
+              "table": {
+                "schema": "public",
+                "name": "order_items"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "payments"
+      },
+      "object_relationships": [
+        {
+          "name": "order",
+          "using": {
+            "foreign_key_constraint_on": "order_id"
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "products"
+      },
+      "object_relationships": [
+        {
+          "name": "product",
+          "using": {
+            "manual_configuration": {
+              "remote_table": {
+                "schema": "public",
+                "name": "order_items"
+              },
+              "column_mapping": {
+                "id": "order_id"
+              }
+            }
+          }
+        }
+      ],
+      "array_relationships": [
+        {
+          "name": "area_codes",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "product_id",
+              "table": {
+                "schema": "public",
+                "name": "area_codes"
+              }
+            }
+          }
+        },
+        {
+          "name": "order_items",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "product_id",
+              "table": {
+                "schema": "public",
+                "name": "order_items"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "users"
+      },
+      "array_relationships": [
+        {
+          "name": "orders",
+          "using": {
+            "foreign_key_constraint_on": {
+              "column": "customer_id",
+              "table": {
+                "schema": "public",
+                "name": "orders"
+              }
+            }
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "customer",
+          "permission": {
+            "columns": [
+              "id",
+              "alt_phone",
+              "phone",
+              "pin_code",
+              "address",
+              "delivery_address",
+              "email_id",
+              "name",
+              "user_id",
+              "created_at",
+              "updated_at"
+            ],
+            "filter": {}
+          }
+        }
+      ],
+      "update_permissions": [
+        {
+          "role": "customer",
+          "permission": {
+            "columns": [
+              "address",
+              "alt_phone",
+              "created_at",
+              "delivery_address",
+              "name",
+              "phone",
+              "pin_code",
+              "updated_at"
+            ],
+            "filter": {
+              "user_id": {
+                "_eq": "X-Hasura-User-Id"
+              }
+            },
+            "check": null
+          }
+        }
+      ]
+    }
+  ]
+}

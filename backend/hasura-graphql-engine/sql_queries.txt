@@ -1,0 +1,14 @@
+--- select all from products for all orders ---
+
+select * from products where id in (SELECT product_id
+FROM orders
+JOIN order_items
+ON orders.id = order_items.order_id)
+
+
+--- select all products for a given order ----
+select * from products where id in (SELECT product_id
+FROM orders
+JOIN order_items
+ON orders.id = order_items.order_id
+where orders.id = '198e62a0-b7ca-11ea-a84c-6943917b1c83')

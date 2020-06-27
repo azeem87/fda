@@ -1,0 +1,27 @@
+--- Insert Multiple Orders ---
+
+mutation MyMutation($orders: [orders_insert_input!]!,$order_items: [order_items_insert_input!]!) {
+  insert_orders(objects: $orders) {
+    returning {
+      id
+      customer_id
+    }
+  }
+  insert_order_items(objects: $order_items){
+    returning{
+      id
+    }
+  }
+}
+
+
+--- Query variables ---
+
+{
+  "orders": [{"id": "198e62a0-b7ca-11ea-a84c-6943917b1c85", "customer_id": 34 , "order_status": "PLACED", "user_shipping_address": "test",
+  "total_amount": 10}],
+  "order_items": [{  "order_id": "198e62a0-b7ca-11ea-a84c-6943917b1c85" ,
+  "quantity": 1, "product_id": 1 },
+  {  "order_id": "198e62a0-b7ca-11ea-a84c-6943917b1c85" ,
+    "quantity": 1, "product_id": 2 }]
+}

@@ -24,36 +24,11 @@ CREATE SEQUENCE public.area_codes_id_seq
     NO MAXVALUE
     CACHE 1;
 ALTER SEQUENCE public.area_codes_id_seq OWNED BY public.area_codes.id;
-CREATE TABLE public.orders (
-    id integer NOT NULL,
-    ordered_date timestamp with time zone DEFAULT now() NOT NULL,
-    shipped_date timestamp with time zone,
-    order_status text NOT NULL,
-    user_shipping_address text NOT NULL,
-    expected_delivery_date timestamp with time zone,
-    delivery_person_id integer,
-    rating integer,
-    discount integer,
-    promo_code integer,
-    total_amount double precision NOT NULL,
-    order_auth_code integer NOT NULL,
-    order_reference uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    customer_id integer NOT NULL
-);
-COMMENT ON TABLE public.orders IS 'Order Table';
-CREATE SEQUENCE public.order_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-ALTER SEQUENCE public.order_id_seq OWNED BY public.orders.id;
 CREATE TABLE public.order_items (
     id integer NOT NULL,
     quantity integer NOT NULL,
-    order_id integer NOT NULL,
-    product_id integer NOT NULL
+    product_id integer NOT NULL,
+    order_id uuid NOT NULL
 );
 COMMENT ON TABLE public.order_items IS 'user cart items table';
 CREATE SEQUENCE public.order_items_id_seq
@@ -64,12 +39,29 @@ CREATE SEQUENCE public.order_items_id_seq
     NO MAXVALUE
     CACHE 1;
 ALTER SEQUENCE public.order_items_id_seq OWNED BY public.order_items.id;
+CREATE TABLE public.orders (
+    ordered_date timestamp with time zone DEFAULT now() NOT NULL,
+    shipped_date timestamp with time zone,
+    order_status text NOT NULL,
+    user_shipping_address text NOT NULL,
+    expected_delivery_date timestamp with time zone,
+    delivery_person_id integer,
+    rating integer,
+    discount integer,
+    promo_code integer,
+    total_amount double precision NOT NULL,
+    order_auth_code integer,
+    customer_id integer NOT NULL,
+    is_valid boolean,
+    id uuid NOT NULL
+);
+COMMENT ON TABLE public.orders IS 'Order Table';
 CREATE TABLE public.payments (
     id integer NOT NULL,
     payment_type text NOT NULL,
     status text NOT NULL,
     card_payment_invoice_id text,
-    order_id integer
+    order_id uuid NOT NULL
 );
 CREATE SEQUENCE public.payments_id_seq
     AS integer
@@ -87,7 +79,8 @@ CREATE TABLE public.products (
     title text NOT NULL,
     product_bucket_id text,
     shipping_charge integer,
-    base64_image_text text NOT NULL
+    base64_image_text text NOT NULL,
+    stock_count integer NOT NULL
 );
 COMMENT ON TABLE public.products IS 'Products table';
 CREATE SEQUENCE public.products_id_seq
@@ -122,7 +115,6 @@ CREATE SEQUENCE public.user_id_seq
 ALTER SEQUENCE public.user_id_seq OWNED BY public.users.id;
 ALTER TABLE ONLY public.area_codes ALTER COLUMN id SET DEFAULT nextval('public.area_codes_id_seq'::regclass);
 ALTER TABLE ONLY public.order_items ALTER COLUMN id SET DEFAULT nextval('public.order_items_id_seq'::regclass);
-ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.order_id_seq'::regclass);
 ALTER TABLE ONLY public.payments ALTER COLUMN id SET DEFAULT nextval('public.payments_id_seq'::regclass);
 ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.user_id_seq'::regclass);
@@ -131,7 +123,9 @@ ALTER TABLE ONLY public.area_codes
 ALTER TABLE ONLY public.order_items
     ADD CONSTRAINT order_items_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.orders
-    ADD CONSTRAINT order_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT orders_id_key UNIQUE (id);
+ALTER TABLE ONLY public.orders
+    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY public.payments
     ADD CONSTRAINT payments_card_payment_id_key UNIQUE (card_payment_invoice_id);
 ALTER TABLE ONLY public.payments
@@ -155,10 +149,10 @@ COMMENT ON TRIGGER set_public_user_updated_at ON public.users IS 'trigger to set
 ALTER TABLE ONLY public.area_codes
     ADD CONSTRAINT area_codes_product_id_fkey FOREIGN KEY (product_id) REFERENCES public.products(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE ONLY public.order_items
-    ADD CONSTRAINT order_items_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+    ADD CONSTRAINT order_items_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(id) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE ONLY public.order_items
-    ADD CONSTRAINT order_items_product_id_fkey FOREIGN KEY (product_id) REFERENCES public.products(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+    ADD CONSTRAINT order_items_product_id_fkey FOREIGN KEY (product_id) REFERENCES public.products(id) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE ONLY public.orders
-    ADD CONSTRAINT orders_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES public.users(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+    ADD CONSTRAINT orders_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES public.users(id);
 ALTER TABLE ONLY public.payments
-    ADD CONSTRAINT payments_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+    ADD CONSTRAINT payments_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(id) ON UPDATE CASCADE ON DELETE CASCADE;

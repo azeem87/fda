@@ -1,5 +1,11 @@
-#app
+#Others
+package-lock.json
+node_modules
+build
+dist
+.env
 .idea
+production.env
 
 # Logs
 logs
