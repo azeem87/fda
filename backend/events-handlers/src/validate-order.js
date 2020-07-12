@@ -1,5 +1,4 @@
 import knex from './knex-pg';
-import 'regenerator-runtime/runtime';
 
 const _ = require('lodash');
 

@@ -24,11 +24,11 @@
     "pg": "^8.2.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4",
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.10.4",
     "@babel/preset-env": "^7.8.7",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
@@ -36,6 +36,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
+    "nodemon": "^2.0.4",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.2"
   }
