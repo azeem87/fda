@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "nodemon --inspect --exec babel-node -r ./node_modules/dotenv/config src/index.js",
     "build": "babel src/ -d build --copy-files",
-    "heroku-postbuild": "npm run build",
     "start": "node build/index.js"
   },
   "author": "",
