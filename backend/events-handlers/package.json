@@ -1,0 +1,42 @@
+{
+  "name": "theorganic-middleware",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon --inspect --exec babel-node -r ./node_modules/dotenv/config src/index.js",
+    "build": "babel src/ -d build --copy-files",
+	"heroku-postbuild": "npm run build",
+	"start": "node build/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "error-middleware": "^5.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "knex": "^0.21.1",
+    "lodash": "^4.17.15",
+    "morgan-body": "^2.4.14",
+    "pg": "^8.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/preset-env": "^7.8.7",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.2"
+  }
+}
