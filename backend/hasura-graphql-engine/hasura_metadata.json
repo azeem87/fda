@@ -85,6 +85,23 @@
             }
           }
         }
+      ],
+      "event_triggers": [
+        {
+          "name": "order_created_event",
+          "definition": {
+            "enable_manual": false,
+            "insert": {
+              "columns": "*"
+            }
+          },
+          "retry_conf": {
+            "num_retries": 1,
+            "interval_sec": 5,
+            "timeout_sec": 20
+          },
+          "webhook": "https://fda-events.herokuapp.com/api/v1/create-order-event"
+        }
       ]
     },
     {
