@@ -3,8 +3,8 @@ import errorMiddleware from 'error-middleware';
 import morganBody from 'morgan-body';
 
 // Application Route Handler Import //
-// validate order 
-import validateOrderHandler from './validate-order';
+// when an order is created it validates order and its eligibility.
+import creeateOrderEventHandler from './create-order';
 
 const express = require('express');
 const app = express();
@@ -21,7 +21,7 @@ morganBody(app,{logAllReqHeader:true});
 
 // ROUTE START //
 app.get(`${context}/`, (req, res) => res.send('the organic fresh app API!'));
-app.post(`${context}/validate-order`, asyncHandler(validateOrderHandler));
+app.post(`${context}/create-order-event`, asyncHandler(creeateOrderEventHandler));
 app.use(errorMiddleware);
 // If no matches found, return 404
 app.use((req, res) => {throw new NotFoundError()});
