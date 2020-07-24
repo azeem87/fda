@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon --inspect --exec babel-node -r ./node_modules/dotenv/config src/index.js",
     "build": "babel src/ -d build --copy-files",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "lint": "eslint src/*.js --fix"
   },
   "author": "",
   "license": "ISC",
@@ -30,8 +31,9 @@
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.10.4",
     "@babel/preset-env": "^7.8.7",
+    "babel-eslint": "^8.2.6",
     "dotenv": "^8.2.0",
-    "eslint": "^6.8.0",
+    "eslint": "^4.19.1",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",

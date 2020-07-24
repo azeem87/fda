@@ -11,6 +11,7 @@
     "no-return-await": 0,
     "no-eval": 0,
     "no-unused-vars": 0,
+    "no-console": 0,
     "array-callback-return": 0
   },
   "parser": "babel-eslint"
