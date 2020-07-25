@@ -1,6 +1,5 @@
 # TheOrganicFresh React Native App
 
-If you want to run ,
 
 - Run `npm run start` to start the packager
 - Follow the instructions to open it with the [Expo app](https://expo.io/)
