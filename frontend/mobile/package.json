@@ -13,6 +13,7 @@
     "test": "jest",
     "release": "release-it"
   },
+  "precommit": "lint",
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
     "@expo/vector-icons": "^10.2.0",
@@ -31,17 +32,18 @@
     "react": "16.11.0",
     "react-dom": "16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.0.tar.gz",
-    "react-native-paper": "^4.0.1",
     "react-native-gesture-handler": "~1.6.1",
+    "react-native-keychain": "^6.1.1",
+    "react-native-paper": "^4.0.1",
     "react-native-reanimated": "~1.9.0",
     "react-native-safe-area-context": "3.0.7",
+    "react-native-safe-area-view": "^1.1.1",
     "react-native-screens": "~2.9.0",
+    "react-native-testing-library": "^2.1.1",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.13.0",
-    "react-native-testing-library": "^2.1.1",
-    "typeface-roboto": "^0.0.54",
     "react-test-renderer": "16.11.0",
-    "react-native-safe-area-view": "^1.1.1"
+    "typeface-roboto": "^0.0.54"
   },
   "devDependencies": {
     "@babel/core": "~7.10.3",
@@ -50,7 +52,6 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.10.3",
     "@expo/webpack-config": "^0.12.20",
     "@release-it/conventional-changelog": "^1.1.0",
@@ -72,7 +73,9 @@
     "jest": "^26.1.0",
     "jest-file-snapshot": "^0.3.2",
     "metro-react-native-babel-preset": "^0.59.0",
+    "pre-commit": "^1.2.2",
     "prettier": "^2.0.5",
+    "prettier-eslint": "^11.0.0",
     "release-it": "^13.4.0",
     "rimraf": "^3.0.2"
   },
