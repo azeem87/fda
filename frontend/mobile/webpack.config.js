@@ -9,7 +9,7 @@ module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
 
   config.module.rules.push({
-    test: /\.(js|jsx)$/,
+    test: /.(ts|tsx|js|jsx)$/,
     include: path.resolve(root, 'src'),
     use: 'babel-loader',
   });
@@ -19,6 +19,7 @@ module.exports = async function (env, argv) {
   Object.assign(config.resolve.alias, {
     ...resolver.extraNodeModules,
     'react-native-web': path.join(node_modules, 'react-native-web'),
+    'react-native-elements': path.join(node_modules, 'react-native-elements'),
     '@expo/vector-icons/MaterialCommunityIcons': require.resolve(
       '@expo/vector-icons/MaterialCommunityIcons'
     ),
