@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
-  Avatar, Button, Card, Title, Paragraph,
-} from 'react-native-paper';
+  Avatar, Button, Card, Title, Paragraph
+} from 'react-native-paper'
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />
 
 const MyComponent = () => (
   <Card>
@@ -18,6 +18,6 @@ const MyComponent = () => (
       <Button>Ok</Button>
     </Card.Actions>
   </Card>
-);
+)
 
-export default MyComponent;
+export default MyComponent
