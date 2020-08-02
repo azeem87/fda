@@ -1,0 +1,20 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-theorganicfresh-prod-163105-authRole",
+            "UnauthRoleArn": "arn:aws:iam::558259009480:role/amplify-theorganicfresh-prod-163105-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::558259009480:role/amplify-theorganicfresh-prod-163105-authRole",
+            "Region": "ap-south-1",
+            "DeploymentBucketName": "amplify-theorganicfresh-prod-163105-deployment",
+            "UnauthRoleName": "amplify-theorganicfresh-prod-163105-unauthRole",
+            "StackName": "amplify-theorganicfresh-prod-163105",
+            "StackId": "arn:aws:cloudformation:ap-south-1:558259009480:stack/amplify-theorganicfresh-prod-163105/0990dbd0-d4bc-11ea-b65e-06a559b381a6",
+            "AmplifyAppId": "d1gzj8pa5mc27h"
+        },
+        "categories": {
+            "auth": {
+                "theorganicfresh277ddf15": {}
+            }
+        }
+    }
+}

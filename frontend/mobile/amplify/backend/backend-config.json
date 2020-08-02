@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"theorganicfresh277ddf15": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
