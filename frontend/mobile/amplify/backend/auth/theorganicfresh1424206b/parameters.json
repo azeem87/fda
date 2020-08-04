@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "theorganicfresh277ddf15_identitypool_277ddf15",
+    "identityPoolName": "theorganicfresh1424206b_identitypool_1424206b",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "theorg277ddf15",
-    "userPoolName": "theorganicfresh277ddf15_userpool_277ddf15",
+    "resourceNameTruncated": "theorg1424206b",
+    "userPoolName": "theorganicfresh1424206b_userpool_1424206b",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -18,7 +18,10 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email"
+        "address",
+        "email",
+        "name",
+        "phone_number"
     ],
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
@@ -28,10 +31,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "theorg277ddf15_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "theorg1424206b_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "277ddf15",
-    "resourceName": "theorganicfresh277ddf15",
+    "sharedId": "1424206b",
+    "resourceName": "theorganicfresh1424206b",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -49,6 +52,11 @@
     "usernameAttributes": [
         "email"
     ],
+    "triggers": "{}",
     "userPoolGroupList": [],
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "permissions": [],
     "dependsOn": []
 }
