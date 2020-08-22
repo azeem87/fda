@@ -1,16 +1,8 @@
-import * as React from 'react'
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper'
-import App from './App'
-
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors
-  }
-}
+import * as React from 'react';
+import Root from './Root';
 
 export default function Main() {
   return (
-      <App />
-  )
+    <Root />
+  );
 }
