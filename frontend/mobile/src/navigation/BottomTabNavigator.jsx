@@ -21,7 +21,7 @@ const BottomTabBar = ({ navigation, state }) => (
 
 const BottomTabNavigator = () => (
   <Navigator tabBar={props => <BottomTabBar {...props} />}>
-    <Screen name="Home" component={HomeStackNavigator} options={{ headerShown: false }} />
+    <Screen name="Home" component={HomeStackNavigator} />
     <Screen name="Cart" component={CartStackNavigator} />
     <Screen name="Profile" component={ProfileStackNavigator} />
   </Navigator>

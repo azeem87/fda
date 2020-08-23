@@ -12,7 +12,7 @@ const ProductView = ({ navigation }) => {
   const displayProducts = [{
     title: 'Pink Chair',
     category: 'Furniture',
-    image: require('../assets/images/image-product-1.png'),
+    image: { uri: 'https://d1z88p83zuviay.cloudfront.net/ProductVariantThumbnailImages/e4ecd12c-b2db-4f76-b9ea-45e0436ba350_425x425.JPG' },
     price: 130,
     amount: 1
   },

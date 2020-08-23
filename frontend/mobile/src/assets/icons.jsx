@@ -64,3 +64,15 @@ export const ShoppingCartIcon = (props) => (
 export const CartIcon = (props) => (
   <Icon {...props} name="shopping-cart" />
 );
+
+export const CloseIcon = (props) => (
+  <Icon {...props} name="close" />
+);
+
+export const MinusIcon = (props) => (
+  <Icon {...props} name="minus" />
+);
+
+export const PlusIcon = (props) => (
+  <Icon {...props} name="plus" />
+);
