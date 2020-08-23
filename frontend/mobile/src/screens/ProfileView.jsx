@@ -1,19 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center'
-  }
-});
+import { Layout, Text
+} from '@ui-kitten/components';
 
 const ProfileView = () => (
-  <View style={styles.center}>
-    <Text>This is the profile screen</Text>
-  </View>
+  <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text category="h1">This is profile view</Text>
+  </Layout>
 );
 
 export default ProfileView;

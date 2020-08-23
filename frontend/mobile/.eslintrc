@@ -52,7 +52,8 @@
     "import/extensions": 0,
     "import/no-unresolved": [ 2,
       { "caseSensitive": false } ],
-    "react/jsx-props-no-spreading": 0
+    "react/jsx-props-no-spreading": 0,
+    "no-use-before-define": 0
   },
   "settings": {
     "import/resolver": {

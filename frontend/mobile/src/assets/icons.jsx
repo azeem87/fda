@@ -60,3 +60,7 @@ export const SearchIcon = (props) => (
 export const ShoppingCartIcon = (props) => (
   <Icon {...props} name="shopping-cart-outline" />
 );
+
+export const CartIcon = (props) => (
+  <Icon {...props} name="shopping-cart" />
+);

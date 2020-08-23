@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import HomeView from '../screens/HomeView';
+import ProductView from '../screens/ProductView';
 import CartView from '../screens/CartView';
 import ProfileView from '../screens/ProfileView';
 
@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 const HomeStackNavigator = () => (
   <Stack.Navigator>
-    <Stack.Screen name="Home" component={HomeView} />
+    <Stack.Screen name="Home" component={ProductView} />
   </Stack.Navigator>
 );
 
