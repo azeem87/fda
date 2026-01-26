@@ -29,7 +29,7 @@
     "@ui-kitten/components": "^5.0.0",
     "@ui-kitten/eva-icons": "^5.0.0",
     "amazon-cognito-identity-js": "^4.3.3",
-    "aws-amplify": "^3.0.22",
+    "aws-amplify": "^6.15.10",
     "aws-amplify-react-native": "^4.2.3",
     "expo": "^38.0.0",
     "expo-font": "~8.2.1",
